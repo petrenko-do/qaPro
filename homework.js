@@ -1,6 +1,5 @@
 let age = prompt('skilki rokiv?');
-if (!isNaN(age) && age >= 0) {
-
+if (!isNaN(age) && age > 0) {
     if (age == 1) {
         console.log(age + ' рiк')
     } else if (age <= 4) {
@@ -8,7 +7,8 @@ if (!isNaN(age) && age >= 0) {
     } else {
         console.log(age + ' рокiв')
     }
-}
-else {
-    console.log('не число')
+} else if (age == null) {
+    console.log('Действие отмененно')
+} else {
+    console.log('Введеное значение неверно')
 }
