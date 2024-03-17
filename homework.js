@@ -1,92 +1,71 @@
-let obj = {
-    name: 'Huan',
-    age: 53,
-    sex: 'male',
-    isWork: true,
-    get addNewValue(){
-         this.name;
-    },
-    set addNewValue(value){
-        this.name = value
-    },
-    getInfo: function(){
-       if(this.hasOwnProperty('name' )) {
-        return console.log(this.name);
-       }
-       else {
-         this;
-       }
-    }
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.sort(myFunc);
+console.log('new arr ' + arr);
+
+function myFunc(){
+	return Math.random() - 0.5;
 }
 
-obj.addNewValue = "Pedro";
-obj.getInfo();
-console.log(obj)
 
 
-
-
-
-
-var services = {
-
-    "стрижка": '60 грн',
-
-    "гоління": '80 грн',
-
-    "Миття голови": '100 грн',
-
-    newService: function (key, value) {
-        this[key] = value;
-
-        console.log(`Вы додали услугу "${key}" по цене "${value}"`);
-    },
-
-    sumPrice: function () {
-        let sum = 0;
-        for (let key in this) {
-            if (typeof this[key] === 'string') {
-                sum += parseInt(this[key]);
-            }
-        }
-        console.log("Общая сумма прайса: " + sum);
-
-    },
-    minPrice: function () {
-        let min = Infinity; 
-        for (let key in this) {
-            if (typeof this[key] === 'string') {
-                let price = parseInt(this[key]); 
-                if (!isNaN(price)) { 
-                    min = Math.min(min, price); 
-                }
-            }
-        }
-        console.log("Минимальная цена в прайсе: " + min);
-    },
-
-    maxPrice : function(){
-        let max = -Infinity;
-        for(let key in this){
-             if ( typeof this[key] === 'string'){
-                let price = parseInt(this[key]);
-                if (!isNaN(price)) {
-                    max = Math.max(max, price)
-                }
-             }
-        }
-        console.log("Максимальная цена в прайсе: " + max)
-    }
-
+const company = {
+	name: 'Велика Компанія',
+	type:'Головна компанія',
+	platform: 'Платформа для продажу квитків',
+	sellsSolution: 'Рішення для продажу квитків',
+	clients: [
+		{
+			name: 'Клієнт 1',
+			type: 'subCompany',
+			uses: 'ПО для продажу квитків',
+			sells: 'Рішення для продажу квитків',
+			partners: [
+				{
+					name: 'Клієнт 1.1',
+					type: 'subSubCompany',
+					uses: 'Рішення для продажу квитків',
+					sells: 'Рішення для продажу квитків',
+				},
+				{
+					name: 'Клієнт 1.2',
+					type: 'subSubCompany',
+					uses: 'Рішення для продажу квитків',
+					sells: 'Рішення для продажу квитків',
+					partners: [
+						{
+							name: 'Клієнт 1.2.3',
+							type: 'subSubCompany',
+							uses: 'Рішення для продажу квитків',
+							sells: 'Рішення для продажу квитків',
+						}
+					]
+				}
+			]
+		},
+		{
+			name: 'Клієнт 2',
+			type: 'subCompany',
+			uses: 'ПО для продажу квитків',
+			sells: 'Рішення для продажу квитків'
+		}
+	]
 };
 
 
-services.newService('Рассказать стих', '20 грн');
-services.newService('Поговорить о космосе', '80 грн');
-services['Розбити скло'] = "10 грн";
+function findClientByName(company, name) {
+	
+	if (company.clients && Array.isArray(company.clients)) {
+		
+		for (let key of company.clients) {
+			
+			if (key.name === name) {
+				return key; 
+			}
+		}
+	}
+	return null; 
+}
 
-
-services.sumPrice();
-services.maxPrice();
-services.minPrice();
-console.log(services);
+let clientName = 'Клієнт 2';
+console.log(findClientByName(company, clientName));
